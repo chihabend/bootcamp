@@ -1,0 +1,34 @@
+-- Users table
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Projects table
+CREATE TABLE IF NOT EXISTS projects (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    status VARCHAR(20) DEFAULT 'active',
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tasks table
+CREATE TABLE IF NOT EXISTS tasks (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    description TEXT,
+    status VARCHAR(20) DEFAULT 'pending',
+    priority VARCHAR(20) DEFAULT 'normal',
+    due_date DATE,
+    project_id INTEGER REFERENCES projects(id) ON DELETE CASCADE,
+    user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+); 
