@@ -1,185 +1,94 @@
-// ex1
-function displayNumbersDivisible(divisor = 23) {
-    let sum = 0;
-    for (let i = 0; i <= 500; i++) {
-        if (i % divisor === 0) {
-            console.log(i);
-            sum += i;
-        }
-    }
-    console.log("Sum:", sum);
+// EX1
+const people = ["Greg", "Mary", "Devon", "James"];
+people.shift();
+people[people.indexOf("James")] = "Jason";
+people.push("TonNom");
+console.log(people.indexOf("Mary"));
+const copyPeople = people.slice(1, -1);
+console.log(copyPeople);
+console.log(people.indexOf("Foo"));
+const last = people[people.length - 1];
+console.log(last);
+
+for (let person of people) {
+  console.log(person);
+}
+for (let person of people) {
+  console.log(person);
+  if (person === "Devon") break;
 }
 
-displayNumbersDivisible();        
-displayNumbersDivisible(3);      
-displayNumbersDivisible(45);     
+// EX2
+const colors = ["bleu", "rouge", "vert", "jaune", "violet"];
+for (let i = 0; i < colors.length; i++) {
+  console.log(`Mon choix n°${i + 1} est ${colors[i]}`);
+}
+for (let i = 0; i < colors.length; i++) {
+  let suffix = (i === 0) ? "er" : "ème";
+  console.log(`Mon ${i + 1}${suffix} choix est ${colors[i]}`);
+}
 
-// ex2
+// EX3
+let number = prompt("Entrez un nombre");
+while (Number(number) < 10 || isNaN(number)) {
+  number = prompt("Entrez un nombre supérieur ou égal à 10");
+}
+console.log(number);
 
-const stock = { 
-    banana: 6, 
-    apple: 0,
-    pear: 12,
-    orange: 32,
-    blueberry: 1
+// EX4
+const building = {
+  numberOfFloors: 4,
+  numberOfAptByFloor: {
+    firstFloor: 3,
+    secondFloor: 4,
+    thirdFloor: 9,
+    fourthFloor: 2,
+  },
+  nameOfTenants: ["Sarah", "Dan", "David"],
+  numberOfRoomsAndRent: {
+    sarah: [3, 990],
+    dan: [4, 1000],
+    david: [1, 500],
+  },
 };
+console.log(building.numberOfFloors);
+console.log(building.numberOfAptByFloor.firstFloor + building.numberOfAptByFloor.thirdFloor);
+let secondTenant = building.nameOfTenants[1];
+console.log(secondTenant, building.numberOfRoomsAndRent[secondTenant.toLowerCase()][0]);
+let sarahRent = building.numberOfRoomsAndRent.sarah[1];
+let davidRent = building.numberOfRoomsAndRent.david[1];
+let danRent = building.numberOfRoomsAndRent.dan[1];
+if (sarahRent + davidRent > danRent) {
+  building.numberOfRoomsAndRent.dan[1] = 1200;
+}
+console.log(building.numberOfRoomsAndRent.dan[1]);
 
-const prices = {    
-    banana: 4, 
-    apple: 2, 
-    pear: 1,
-    orange: 1.5,
-    blueberry: 10
+// EX5
+const famille = {
+  père: "Jean",
+  mère: "Claire",
+  enfant: "Emma"
 };
-
-const shoppingList = ["banana", "orange", "apple"];
-
-function myBill() {
-    let total = 0;
-    for (let item of shoppingList) {
-        if (item in stock && stock[item] > 0) {
-            total += prices[item];
-            stock[item]--;
-        }
-    }
-    return total;
+for (let key in famille) {
+  console.log(key);
+}
+for (let key in famille) {
+  console.log(famille[key]);
 }
 
-console.log("Total Bill:", myBill());
-
-// ex3
-
-function changeEnough(itemPrice, amountOfChange) {
-    const [quarters, dimes, nickels, pennies] = amountOfChange;
-    const total = quarters * 0.25 + dimes * 0.10 + nickels * 0.05 + pennies * 0.01;
-    return total >= itemPrice;
+// EX6
+const details = {
+  my: 'name',
+  is: 'Rudolf',
+  the: 'reindeer'
+};
+let sentence = '';
+for (let key in details) {
+  sentence += `${key} ${details[key]} `;
 }
+console.log(sentence.trim());
 
-console.log(changeEnough(4.25, [25, 20, 5, 0]));
-console.log(changeEnough(14.11, [2, 100, 0, 0])); 
-console.log(changeEnough(0.75, [0, 0, 20, 5])); 
-
-// ex4
-
-function hotelCost(nights) {
-    return 140 * nights;
-}
-
-function planeRideCost(destination) {
-    destination = destination.toLowerCase();
-    if (destination === "london") return 183;
-    if (destination === "paris") return 220;
-    return 300;
-}
-
-function rentalCarCost(days) {
-    let cost = days * 40;
-    if (days > 10) cost *= 0.95;
-    return cost;
-}
-
-function totalVacationCost() {
-    let nights, destination, days;
-
-    while (isNaN(nights)) {
-        nights = parseInt(prompt("How many nights in the hotel?"));
-    }
-
-    while (!destination || typeof destination !== "string") {
-        destination = prompt("Where are you flying?");
-    }
-
-    while (isNaN(days)) {
-        days = parseInt(prompt("How many days will you rent the car?"));
-    }
-
-    const hotel = hotelCost(nights);
-    const flight = planeRideCost(destination);
-    const car = rentalCarCost(days);
-
-    console.log(`Hotel: $${hotel}, Plane: $${flight}, Car: $${car}`);
-    console.log(`Total: $${hotel + flight + car}`);
-}
-
-totalVacationCost();
-
-// ex5
-
-const div = document.getElementById("container");
-console.log(div);
-
-const lists = document.querySelectorAll(".list");
-lists[0].children[1].textContent = "Richard";
-
-lists[1].children[1].remove();
-
-lists.forEach(ul => {
-    ul.firstElementChild.textContent = "YourName";
-    ul.classList.add("student_list");
-});
-
-lists[0].classList.add("university", "attendance");
-
-div.style.backgroundColor = "lightblue";
-div.style.padding = "10px";
-
-const lis = document.querySelectorAll("li");
-lis.forEach(li => {
-    if (li.textContent === "Dan") li.style.display = "none";
-    if (li.textContent === "Richard") li.style.border = "1px solid black";
-});
-
-document.body.style.fontSize = "18px";
-
-if (div.style.backgroundColor === "lightblue") {
-    const names = lists[0].querySelectorAll("li");
-    alert(`Hello ${names[0].textContent} and ${names[1].textContent}`);
-}
-
-// ex6
-
-const nav = document.getElementById("navBar");
-nav.setAttribute("id", "socialNetworkNavigation");
-
-const ul = nav.querySelector("ul");
-const newLi = document.createElement("li");
-const text = document.createTextNode("Logout");
-newLi.appendChild(text);
-ul.appendChild(newLi);
-
-console.log("First:", ul.firstElementChild.textContent);
-console.log("Last:", ul.lastElementChild.textContent);
-
-// ex7
-
-const allBooks = [
-    {
-        title: "1984",
-        author: "George Orwell",
-        image: "https://example.com/1984.jpg",
-        alreadyRead: true
-    },
-    {
-        title: "The Alchemist",
-        author: "Paulo Coelho",
-        image: "https://example.com/alchemist.jpg",
-        alreadyRead: false
-    }
-];
-
-const section = document.querySelector(".listBooks");
-
-allBooks.forEach(book => {
-    const div = document.createElement("div");
-    const text = document.createElement("p");
-    text.textContent = `${book.title} written by ${book.author}`;
-    if (book.alreadyRead) text.style.color = "red";
-
-    const img = document.createElement("img");
-    img.src = book.image;
-    img.style.width = "100px";
-
-    div.appendChild(text);
-    div.appendChild(img);
-    section.appendChild(div);
-});
+// EX7
+const names = ["Jack", "Philip", "Sarah", "Amanda", "Bernard", "Kyle"];
+const secretName = names.map(name => name[0]).sort().join('');
+console.log(secretName);

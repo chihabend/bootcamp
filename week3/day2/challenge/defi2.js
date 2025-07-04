@@ -1,12 +1,19 @@
-let input = prompt("Enter several words separated by commas:");
-let words = input.split(',').map(word => word.trim());
-let maxLength = Math.max(...words.map(word => word.length));
-let border = '*'.repeat(maxLength + 4); 
-console.log(border);
-
-for (let word of words) {
-  let line = `* ${word}${' '.repeat(maxLength - word.length)} *`;
-  console.log(line);
+const et= "*";
+for (let i = 0; i < 6; i++) {
+    console.log(et.repeat(i));
 }
 
-console.log(border);
+for (let i = 1; i < 6; i++) {
+    let line = '';
+    for (let j = 0; j < i; j++) {
+        line += '*';
+    }
+    console.log(line);
+}
+
+
+
+
+
+
+

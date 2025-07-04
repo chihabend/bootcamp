@@ -1,48 +1,38 @@
-// EX1
-function isBlank(str) {
-    return str.trim() === '';
+// EX1 
+let numbers = [123, 8409, 100053, 333333333, 7];
+for (let i = 0; i < numbers.length; i++) {
+  console.log(numbers[i] % 3 === 0);
+}
+// EX2 
+let guestList = {
+  randy: "Germany",
+  karla: "France",
+  wendy: "Japan",
+  norman: "England",
+  sam: "Argentina"
+};
+
+let studentName = prompt("Quel est votre prénom ?").toLowerCase();
+if (studentName in guestList) {
+  console.log(`Hi! I'm ${studentName}, and I'm from ${guestList[studentName]}.`);
+} else {
+  console.log("Hi! I'm a guest.");
+}
+
+// EX3 
+let age = [20, 5, 12, 43, 98, 55];
+
+let total = 0;
+for (let i = 0; i < age.length; i++) {
+  total += age[i];
+}
+console.log("Somme des âges :", total);
+
+// Âge le plus élevé
+let maxAge = age[0];
+for (let i = 1; i < age.length; i++) {
+  if (age[i] > maxAge) {
+    maxAge = age[i];
   }
-  console.log(isBlank(''));         
-        console.log(isBlank('abc'));            
-// EX2
-  function abbrevName(name) {
-    const parts = name.split(' ');
-    return `${parts[0]} ${parts[1][0].toUpperCase()}.`;
-  }
-  console.log(abbrevName("Robin Singh")); 
-  
-  
-// EX3
-  function swapCase(str) {
-    return str
-      .split('')
-      .map(char => {
-        if (char === char.toUpperCase()) {
-          return char.toLowerCase();
-        } else {
-          return char.toUpperCase();
-        }
-      })
-      .join('');
-  }
-  console.log(swapCase('The Quick Brown Fox')); 
-  
-  
-// EX4
-  function isOmnipresent(arr, value) {
-    return arr.every(subArr => subArr.includes(value));
-  }
-  console.log(isOmnipresent([[1, 1], [1, 3], [5, 1], [6, 1]], 1)); 
-  console.log(isOmnipresent([[1, 1], [1, 3], [5, 1], [6, 1]], 6)); 
-  
-  
-// EX5
-  const table = document.querySelector('table');
-  
-  for (let i = 0; i < table.rows.length; i++) {
-    const cell = table.rows[i].cells[i];
-    if (cell) {
-      cell.style.backgroundColor = 'red';
-    }
-  }
-  
+}
+console.log("Âge le plus élevé :", maxAge);

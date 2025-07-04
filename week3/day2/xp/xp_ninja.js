@@ -1,86 +1,56 @@
-// EX1
-const randomNum = Math.floor(Math.random() * 100) + 1;
-console.log("Random number:", randomNum);
-for (let i = 0; i <= randomNum; i++) {
-  if (i % 2 === 0) {
-    console.log(i);
-  }
-}
-
-// EX2
-function capitalize(str) {
-  let even = '';
-  let odd = '';
-  for (let i = 0; i < str.length; i++) {
-    if (i % 2 === 0) {
-      even += str[i].toUpperCase();
-      odd += str[i];
+// EX1 
+const person1 = {
+    fullName: "Alice Dupont",
+    mass: 68, // en kg
+    height: 1.65, // en m
+    calcBMI: function () {
+      return this.mass / (this.height ** 2);
+    }
+  };
+  
+  const person2 = {
+    fullName: "Marc Lemoine",
+    mass: 85,
+    height: 1.75,
+    calcBMI: function () {
+      return this.mass / (this.height ** 2);
+    }
+  };
+  
+  function compareBMI(p1, p2) {
+    const bmi1 = p1.calcBMI();
+    const bmi2 = p2.calcBMI();
+    if (bmi1 > bmi2) {
+      console.log(`${p1.fullName} a un IMC plus élevé (${bmi1.toFixed(2)}) que ${p2.fullName} (${bmi2.toFixed(2)}).`);
+    } else if (bmi2 > bmi1) {
+      console.log(`${p2.fullName} a un IMC plus élevé (${bmi2.toFixed(2)}) que ${p1.fullName} (${bmi1.toFixed(2)}).`);
     } else {
-      even += str[i];
-      odd += str[i].toUpperCase();
+      console.log(`${p1.fullName} et ${p2.fullName} ont le même IMC (${bmi1.toFixed(2)}).`);
     }
   }
-  return [even, odd];
-}
-console.log(capitalize("abcdef")); 
-
-// EX3
-function isPalindrome(str) {
-  const reversed = str.split('').reverse().join('');
-  return str === reversed;
-}
-console.log(isPalindrome("madam")); 
-console.log(isPalindrome("hello")); 
-
-// EX4
-function biggestNumberInArray(arr) {
-  const numbers = arr.filter(val => typeof val === "number");
-  if (numbers.length === 0) return 0;
-  return Math.max(...numbers);
-}
-console.log(biggestNumberInArray([-1, 0, 3, 100, 99, 2, 99])); 
-console.log(biggestNumberInArray(['a', 3, 4, 2])); 
-console.log(biggestNumberInArray([])); 
-
-// EX5
-function uniqueArray(arr) {
-  return [...new Set(arr)];
-}
-console.log(uniqueArray([1,2,3,3,3,3,4,5])); 
-
-// EX6
-function createCalendar(year, month) {
-  let mon = month - 1;
-  let date = new Date(year, mon, 1);
-
-  const table = document.createElement('table');
-  const weekdays = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
-  let thead = table.createTHead();
-  let headRow = thead.insertRow();
-  weekdays.forEach(day => {
-    const th = document.createElement('th');
-    th.textContent = day;
-    headRow.appendChild(th);
-  });
-
-  let tbody = table.createTBody();
-  let row = tbody.insertRow();
-
-  let firstDay = (date.getDay() + 6) % 7;
-  for (let i = 0; i < firstDay; i++) {
-    row.insertCell();
-  }
-
-  while (date.getMonth() === mon) {
-    let cell = row.insertCell();
-    cell.textContent = date.getDate();
-    if ((date.getDay() + 6) % 7 === 6) {
-      row = tbody.insertRow();
+  
+  compareBMI(person1, person2);
+  
+  // EX2
+  function calculateAverage(gradesList) {
+    let sum = 0;
+    for (let i = 0; i < gradesList.length; i++) {
+      sum += gradesList[i];
     }
-    date.setDate(date.getDate() + 1);
+    return sum / gradesList.length;
   }
-
-  document.body.appendChild(table);
-}
-
-createCalendar(2012, 9); 
+  
+  function findAvg(gradesList) {
+    const avg = calculateAverage(gradesList);
+    console.log(`La moyenne est : ${avg.toFixed(2)}`);
+  
+    if (avg > 65) {
+      console.log("Félicitations ! Vous avez réussi.");
+    } else {
+      console.log("Désolé, vous avez échoué. Vous devez recommencer le cours.");
+    }
+  }
+  
+  findAvg([80, 90, 75, 60, 85]); // 7alawa
+  findAvg([50, 40, 55, 60]);     // la la
+  
