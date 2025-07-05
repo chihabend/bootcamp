@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercises XP Ninja</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    #totalTip {
+      display: none;
+      margin-top: 10px;
+    }
+
+    #each {
+      display: none;
+    }
+
+    #animateBox {
+      margin-top: 20px;
+    }
+
+    #result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+
+  <h2>Exercise 1: Tip Calculator</h2>
+  <label for="billAmt">Bill Amount:</label>
+  <input id="billAmt" type="number" placeholder="Enter Bill Amount"><br><br>
+
+  <label for="serviceQual">Service Quality:</label>
+  <select id="serviceQual">
+    <option value="0">--Choose an Option--</option>
+    <option value="0.3">30% - Outstanding</option>
+    <option value="0.2">20% - Good</option>
+    <option value="0.15">15% - It was OK</option>
+    <option value="0.1">10% - Bad</option>
+    <option value="0.05">5% - Terrible</option>
+  </select><br><br>
+
+  <label for="numOfPeople">Number of People:</label>
+  <input id="numOfPeople" type="number" placeholder="Number of People"><br><br>
+
+  <button id="calculate">Calculate</button>
+
+  <div id="totalTip">
+    <h3>Tip Amount</h3>
+    <p>$<span id="tip">0.00</span> <span id="each">each</span></p>
+  </div>
+
+  <hr>
+
+
+  <h2>Exercise 2: Email Validation</h2>
+  <form id="emailForm">
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+    <button type="submit">Submit</button>
+  </form>
+  <p id="result"></p>
+
+  <hr>
+
+
+  <h2>Exercise 3: Geolocation</h2>
+  <button onclick="getLocation()">Get My Location</button>
+  <p id="output"></p>
+
+    <script src="xp_ninja.js"></script>
+</body>
+</html>
