@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #game-container {
+          display: flex;
+          align-items: flex-start;
+        }
+        #main-container {
+          display: flex;
+          flex-direction: column;
+          margin-right: 20px;
+        }
+        #palette-container {
+          width: 120px;
+          margin-left: 20px;
+        }
+        #color-palette {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 4px;
+          margin-top: 10px;
+        }
+        .color-swatch {
+          width: 24px;
+          height: 24px;
+          border-radius: 4px;
+          cursor: pointer;
+          border: 1px solid #aaa;
+        }
+      </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="main-container">
+            <div id="palette-container">
+              <button id="clear-btn">Clear</button>
+              <div id="color-palette">
+                <div class="color-swatch" data-color="red" style="background: red;"></div>
+                <div class="color-swatch" data-color="orange" style="background: orange;"></div>
+                <div class="color-swatch" data-color="gold" style="background: gold;"></div>
+                <div class="color-swatch" data-color="yellow" style="background: yellow;"></div>
+                <div class="color-swatch" data-color="green" style="background: green;"></div>
+                <div class="color-swatch" data-color="lightgreen" style="background: lightgreen;"></div>
+                <div class="color-swatch" data-color="aqua" style="background: aqua;"></div>
+                <div class="color-swatch" data-color="cyan" style="background: cyan;"></div>
+                <div class="color-swatch" data-color="skyblue" style="background: skyblue;"></div>
+                <div class="color-swatch" data-color="deepskyblue" style="background: deepskyblue;"></div>
+                <div class="color-swatch" data-color="blue" style="background: blue;"></div>
+                <div class="color-swatch" data-color="navy" style="background: navy;"></div>
+                <div class="color-swatch" data-color="indigo" style="background: indigo;"></div>
+                <div class="color-swatch" data-color="purple" style="background: purple;"></div>
+                <div class="color-swatch" data-color="violet" style="background: violet;"></div>
+                <div class="color-swatch" data-color="pink" style="background: pink;"></div>
+                <div class="color-swatch" data-color="gray" style="background: gray;"></div>
+                <div class="color-swatch" data-color="black" style="background: black;"></div>
+                <div class="color-swatch" data-color="white" style="background: white; border: 1px solid #ccc;"></div>
+                <div class="color-swatch" data-color="silver" style="background: silver;"></div>
+              </div>
+            </div>
+          </div>
+        <div id="grid"></div>
+        <script>
+            const grid = document.getElementById("grid");
+            grid.style.display = "grid";
+            grid.style.gridTemplateColumns = "repeat(60, 10px)";
+            grid.style.gridTemplateRows = "repeat(25, 10px)";
+            grid.style.width = "600px";
+            grid.style.height = "250px";
+            grid.style.gap = "0px";
+            for (let j = 0; j < 25; j++) {
+                for (let i = 0; i < 60; i++) {
+                    const cell = document.createElement("div");
+                    cell.className = "cell";
+                    cell.id = `cell-${i}-${j}`;
+                    cell.style.width = "10px";
+                    cell.style.height = "10px";
+                    cell.style.backgroundColor = "white";
+                    cell.style.border = "1px solid black";
+                    grid.appendChild(cell);
+                }
+            }
+        </script>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TO-DO LIST</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #ff4e50, #f9d423);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+  }
+  
+  h1 {
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .listTasks {
+    text-align: left;
+  }
+  
+  .task {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    border-bottom: 1px solid #add8e6;
+    padding-bottom: 5px;
+  }
+  
+  .task i {
+    color: red;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .task input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .task.done label {
+    text-decoration: line-through;
+    color: red;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>TO-DO LIST</h1>
+    <form id="taskForm">
+      <input type="text" id="taskInput" placeholder="new task" />
+      <button type="submit">ADD</button>
+    </form>
+    <div class="listTasks"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

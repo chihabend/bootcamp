@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<style>
+  body {
+    background: url('https://devtlv.github.io/drumset/images/nainoa-shizuru-NcdG9mK3PBY-unsplash.jpg') center center/cover no-repeat fixed;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    min-height: 100vh;
+  }
+  h1 {
+    margin-top: 32px;
+    margin-bottom: 16px;
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    text-shadow: 1px 2px 8px #000a;
+  }
+  .drumset {
+    display: flex;
+    gap: 32px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .drum {
+    background: #444;
+    border: 4px solid #888;
+    border-radius: 18px;
+    width: 110px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px #0007;
+    cursor: pointer;
+    transition: transform 0.08s, box-shadow 0.08s;
+    position: relative;
+    user-select: none;
+  }
+  .drum:active, .drum.playing {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 4px #fff8, 0 6px 24px #000a;
+    border-color: #fff;
+  }
+  .drum-key {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #ffd700;
+    margin-bottom: 6px;
+    text-shadow: 1px 2px 8px #000a;
+  }
+  .drum-label {
+    font-size: 1.1rem;
+    color: #fff;
+    letter-spacing: 1px;
+    text-align: center;
+    text-shadow: 1px 2px 8px #000a;
+  }
+  .regle-tout {
+    margin-top: 48px;
+    background: #ffd700;
+    color: #222;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 12px 32px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #0005;
+    transition: background 0.15s, color 0.15s;
+  }
+  .regle-tout:active {
+    background: #fff;
+    color: #222;
+  }
+</style>
+<h1>Drumset</h1>
+<div class="drumset">
+  <div class="drum" data-key="A" data-sound="boom">
+    <div class="drum-key">A</div>
+    <div class="drum-label">Boom</div>
+    <audio class="drum-audio" data-sound="boom" src="drumset_setup/sounds/boom.wav"></audio>
+  </div>
+  <div class="drum" data-key="S" data-sound="clap">
+    <div class="drum-key">S</div>
+    <div class="drum-label">Clap</div>
+    <audio class="drum-audio" data-sound="clap" src="drumset_setup/sounds/clap.wav"></audio>
+  </div>
+  <div class="drum" data-key="D" data-sound="hihat">
+    <div class="drum-key">D</div>
+    <div class="drum-label">HiHat</div>
+    <audio class="drum-audio" data-sound="hihat" src="drumset_setup/sounds/hihat.wav"></audio>
+  </div>
+  <div class="drum" data-key="F" data-sound="kick">
+    <div class="drum-key">F</div>
+    <div class="drum-label">Kick</div>
+    <audio class="drum-audio" data-sound="kick" src="drumset_setup/sounds/kick.wav"></audio>
+  </div>
+  <div class="drum" data-key="G" data-sound="openhat">
+    <div class="drum-key">G</div>
+    <div class="drum-label">OpenHat</div>
+    <audio class="drum-audio" data-sound="openhat" src="drumset_setup/sounds/openhat.wav"></audio>
+  </div>
+  <div class="drum" data-key="H" data-sound="ride">
+    <div class="drum-key">H</div>
+    <div class="drum-label">Ride</div>
+    <audio class="drum-audio" data-sound="ride" src="drumset_setup/sounds/ride.wav"></audio>
+  </div>
+  <div class="drum" data-key="J" data-sound="snare">
+    <div class="drum-key">J</div>
+    <div class="drum-label">Snare</div>
+    <audio class="drum-audio" data-sound="snare" src="drumset_setup/sounds/snare.wav"></audio>
+  </div>
+  <div class="drum" data-key="K" data-sound="tink">
+    <div class="drum-key">K</div>
+    <div class="drum-label">Tink</div>
+    <audio class="drum-audio" data-sound="tink" src="drumset_setup/sounds/tink.wav"></audio>
+  </div>
+  <div class="drum" data-key="L" data-sound="tom">
+    <div class="drum-key">L</div>
+    <div class="drum-label">Tom</div>
+    <audio class="drum-audio" data-sound="tom" src="drumset_setup/sounds/tom.wav"></audio>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
