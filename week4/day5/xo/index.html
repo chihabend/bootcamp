@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe Game</title>
+    <style>
+        body {
+            background: #39f;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 30px;
+            font-size: 3em;
+            font-weight: bold;
+        }
+        .symbol-choice {
+            margin: 20px 0 10px 0;
+        }
+        .symbol-choice button {
+            font-size: 1.2em;
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #222;
+            color: #fff;
+            cursor: pointer;
+        }
+        .symbol-choice button.active {
+            background: #fff;
+            color: #39f;
+            font-weight: bold;
+        }
+        #board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            justify-content: center;
+            margin: 30px auto;
+            border-radius: 10px;
+            width: max-content;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            background: #39f;
+            color: #fff;
+            font-size: 3em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.2s;
+            border: 2px solid #222;
+        }
+        .cell:hover {
+            background: #2a7fd6;
+        }
+        #status {
+            font-size: 1.5em;
+            margin: 20px 0;
+            min-height: 2em;
+        }
+        #restart {
+            font-size: 1.1em;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            background: #fff;
+            color: #39f;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic Tac Toe Game</h1>
+    <div class="symbol-choice">
+        <span>Choose your symbol:</span>
+        <button id="chooseX" class="active">X</button>
+        <button id="chooseO">O</button>
+    </div>
+    <div id="board"></div>
+    <div id="status"></div>
+    <button id="restart">Restart Game</button>
+    <script src="script.js"></script>
+</body>
+</html>
