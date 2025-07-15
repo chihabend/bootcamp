@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RoboFriends</title>
+  <link href="https://fonts.cdnfonts.com/css/sega-logo-font" rel="stylesheet">
+  <style>
+    body {
+      background: #6556CD url('imgs/image2.png');
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .logo {
+      font-family: 'SEGA LOGO FONT', sans-serif;
+      color: #00ff99;
+      font-size: 2.5rem;
+      padding: 20px;
+      letter-spacing: 2px;
+    }
+    .search-box {
+      display: block;
+      margin: 0 auto 30px auto;
+      padding: 10px;
+      width: 300px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .card {
+      background: url('imgs/image1.png') center/cover, #2ec4b6;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      width: 300px;
+      text-align: center;
+      padding: 20px;
+      font-family: 'SEGA LOGO FONT', sans-serif;
+    }
+    .card img {
+      border-radius: 50%;
+      background: #293462;
+      margin-bottom: 15px;
+    }
+    .card h2 {
+      margin: 10px 0 5px 0;
+      font-size: 1.5rem;
+    }
+    .card p {
+      margin: 0;
+      font-size: 1rem;
+      color: #22223b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">ROBOFRIENDS
+  <input type="text" class="search-box" placeholder="Search Robots" id="searchInput"></div>
+  <div class="cards-container" id="cardsContainer"></div>
+  <script src="script.js"></script>
+</body>
+</html>
