@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Result</title>
+</head>
+<body>
+  <section id="display"></section>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name');
+    const lastname = params.get('lastname');
+    if (name || lastname) {
+      document.getElementById('display').innerHTML = `
+        <p>NAME: ${name ? name : ''}</p>
+        <p>LAST NAME: ${lastname ? lastname : ''}</p>
+      `;
+    } else {
+      document.getElementById('display').textContent = "No data received.";
+    }
+  </script>
+</body>
+</html>

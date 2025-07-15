@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quote Generator</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #b7a39d;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .quote-box {
+      background-color: #e8dfdd;
+      padding: 40px;
+      width: 350px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .generate-button {
+      background-color: #4fcfc3;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 30px;
+      border-radius: 4px;
+      box-shadow: 2px 2px 0px 2px #578de8;
+    }
+
+    .quote-icon {
+      font-size: 40px;
+      color: #4a5568;
+    }
+
+    .quote-text {
+      color: #4a5568;
+      font-size: 20px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+
+    .quote-author {
+      color: #4fcfc3;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0 10px 0;
+      flex-wrap: wrap;
+    }
+    .button-group button {
+      background-color: #4fcfc3;
+      color: white;
+      border: none;
+      padding: 10px 0;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      box-shadow: 2px 2px 0px 2px #578de8;
+      margin-bottom: 0;
+      width: 100%;
+      min-width: 180px;
+      max-width: 300px;
+    }
+    .form-container {
+      background: #f7f3f2;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+      border-radius: 8px;
+      padding: 30px 30px 20px 30px;
+      margin-left: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 340px;
+      max-width: 350px;
+    }
+    #add-quote-form, #filter-author-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #add-quote-form input, #filter-author-form input {
+      width: 95%;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      padding: 8px;
+      font-size: 15px;
+    }
+    #add-quote-form label, #filter-author-form label {
+      align-self: flex-start;
+      margin-bottom: 2px;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<script src="script.js"></script>
+<body>
+
+  <div class="quote-box">
+    <div class="quote-icon">❝</div>
+    <div class="quote-text">
+      <p></p>
+    </div>
+    <div class="quote-author"></div>
+    <button class="generate-button" onclick="generateQuote()">Generate Quote</button>
+  </div>
+  <div class="form-container">
+    <form id="add-quote-form" style="margin-top:30px;">
+      <div>
+        <label for="new-quote">Citation :</label><br>
+        <input type="text" id="new-quote" name="new-quote" required style="width:90%;margin-bottom:10px;">
+      </div>
+      <div>
+        <label for="new-author">Auteur :</label><br>
+        <input type="text" id="new-author" name="new-author" required style="width:90%;margin-bottom:10px;">
+      </div>
+      <button type="submit" class="generate-button" style="margin-bottom:10px;width:100%;">Ajouter</button>
+    </form>
+    <div class="button-group">
+      <button onclick="nombre_car_espace()">Nombre car espace inclu</button>
+      <button onclick="nombre_car_non()">Nombre car espace non inclu</button>
+      <button onclick="nombre_mot()">Nombre mot</button>
+      <button onclick="like()">like</button>
+    </div>
+    <form id="filter-author-form" style="margin-top:20px;">
+      <label for="filter-author">Filtrer par auteur :</label>
+      <input type="text" id="filter-author" name="filter-author" required style="margin-bottom:10px;">
+      <button type="submit" class="generate-button" style="margin-bottom:0;width:100%;">Filtrer</button>
+    </form>
+    <div id="filtered-quote-controls" style="display:none; margin-top:10px;">
+      <button id="prev-quote-btn" class="generate-button" style="margin-right:10px;">Précédent</button>
+      <button id="next-quote-btn" class="generate-button">Suivant</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('add-quote-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const quoteText = document.getElementById('new-quote').value.trim();
+      const authorText = document.getElementById('new-author').value.trim();
+      if (quoteText && authorText) {
+        quotes.push({
+          id: quotes.length,
+          author: authorText,
+          quote: quoteText,
+          likes: 0
+        });
+        this.reset();
+      }
+    });
+
+    let filteredQuotes = [];
+    let filteredIndex = 0;
+
+    function displayFilteredQuote() {
+      if (filteredQuotes.length === 0) {
+        document.querySelector(".quote-text p").textContent = "Aucune citation trouvée pour cet auteur.";
+        document.querySelector(".quote-author").textContent = "";
+        document.getElementById('filtered-quote-controls').style.display = "none";
+        return;
+      }
+      const quote = filteredQuotes[filteredIndex];
+      document.querySelector(".quote-text p").textContent = quote.quote;
+      document.querySelector(".quote-author").textContent = quote.author;
+
+      const likeCountElem = document.querySelector(".like-count");
+      if (likeCountElem) {
+        likeCountElem.textContent = quote.likes || 0;
+      }
+      document.getElementById('filtered-quote-controls').style.display = "block";
+    }
+
+    document.getElementById('filter-author-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const author = document.getElementById('filter-author').value.trim().toLowerCase();
+      filteredQuotes = quotes.filter(q => q.author.toLowerCase() === author);
+      filteredIndex = 0;
+      displayFilteredQuote();
+    });
+
+    document.getElementById('prev-quote-btn').addEventListener('click', function() {
+      if (filteredQuotes.length === 0) return;
+      filteredIndex = (filteredIndex - 1 + filteredQuotes.length) % filteredQuotes.length;
+      displayFilteredQuote();
+    });
+
+    document.getElementById('next-quote-btn').addEventListener('click', function() {
+      if (filteredQuotes.length === 0) return;
+      filteredIndex = (filteredIndex + 1) % filteredQuotes.length;
+      displayFilteredQuote();
+    });
+  </script>
+  </script>
+
+</body>
+</html>
