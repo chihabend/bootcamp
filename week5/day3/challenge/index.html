@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<style>
+    body {
+        background-image: url('bg.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+</style>
+<script src="script.js"></script>
+<div style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+  <div style="background: rgba(255,255,255,0.25); box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37); border-radius: 20px; padding: 40px 32px; max-width: 400px; width: 100%; text-align: center; font-family: 'Montserrat', Arial, sans-serif;">
+    <h1 style="color: #fff; font-weight: 400; margin-bottom: 32px; font-size: 2.2em;">Currency Converter</h1>
+    <form id="converterForm" autocomplete="off">
+      <div style="margin-bottom: 18px;">
+        <label for="fromCurrency" style="color: #fff; font-size: 1.1em;">From:</label><br>
+        <select id="fromCurrency" name="fromCurrency" style="width: 100%; padding: 8px; border-radius: 6px; border: none; margin-top: 6px; font-size: 1em;">
+          <option value="">Loading...</option>
+        </select>
+      </div>
+      <div style="margin-bottom: 18px;">
+        <label for="toCurrency" style="color: #fff; font-size: 1.1em;">To:</label><br>
+        <select id="toCurrency" name="toCurrency" style="width: 100%; padding: 8px; border-radius: 6px; border: none; margin-top: 6px; font-size: 1em;">
+          <option value="">Loading...</option>
+        </select>
+      </div>
+      <div style="margin-bottom: 18px;">
+        <label for="amount" style="color: #fff; font-size: 1.1em;">Amount:</label><br>
+        <input type="number" id="amount" name="amount" value="1" min="0" step="any" style="width: 70%; padding: 8px; border-radius: 6px; border: none; margin-top: 6px; font-size: 1em;">
+        <button type="submit" id="convertBtn" style="padding: 8px 18px; border-radius: 6px; border: none; background: #4ecdc4; color: #fff; font-size: 1em; margin-left: 8px; cursor: pointer;">Convert</button>
+      </div>
+      <button type="button" id="swapBtn" title="Swap currencies" style="background: #fff2; color: #fff; border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 1.2em; cursor: pointer; margin-bottom: 18px; transition: background 0.2s;">&#8646;</button>
+    </form>
+    <div id="result" style="margin-top: 18px; color: #fff; font-size: 1.3em; min-height: 1.5em;"></div>
+    <div id="error" style="color: #ff6b6b; margin-top: 10px; font-size: 1em;"></div>
+  </div>
+</div>
+
+
+</body>
+</html>
