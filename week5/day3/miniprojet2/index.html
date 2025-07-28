@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Pokedex</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .pokedex-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            background-image: url('bg.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .screen {
+            width: 320px;
+            height: 240px;
+            border-radius: 15px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: -160px;
+        }
+
+        .screen.loading {
+            background: #2c3e50;
+        }
+
+        .pokemon-image {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .pokemon-info {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 200px;
+            margin-top: 55px;
+        }
+
+        .pokemon-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            text-transform: capitalize;
+            margin-bottom: 5px;
+        }
+
+        .pokemon-details {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .pokemon-type {
+            background: #ff6b6b;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin: 5px 2px;
+            display: inline-block;
+            text-transform: capitalize;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: -80px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+
+
+        .random-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            background: #4ecdc500;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: background 0.2s;
+            position: absolute;
+            margin-top: 435px;
+            right: 100px;
+            margin-right: 295px;
+            z-index: 9999;
+        }
+
+        .loading-message {
+            color: #4ecdc4;
+            font-size: 20px;
+            text-align: center;
+            animation: pulse 1.5s infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 18px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .instructions {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .instructions h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .instructions p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .nav-btn {
+            position: absolute;
+            top: 465px;
+            background: transparent;
+            border: none;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            margin: 0 18px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        #prevBtn::before, #nextBtn::before {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        #prevBtn::before {
+            border-width: 20px 28px 20px 0;
+            border-color: transparent #444 transparent transparent;
+        }
+        #nextBtn::before {
+            border-width: 20px 0 20px 28px;
+            border-color: transparent transparent transparent #444;
+        }
+        #prevBtn {
+            left: calc(50% - 65px);
+        }
+        #nextBtn {
+            left: calc(50% + 25px);
+        }
+    </style>
+</head>
+<body>
+    <img src="logo.png" alt="Pokemon Logo" class="logo">
+    <button class="random-btn" id="randomBtn"></button>
+        <button class="nav-btn" id="prevBtn" disabled>←</button>
+        <button class="nav-btn" id="nextBtn" disabled>→</button>
+    <div class="pokedex-container">
+        <div class="screen" id="screen">
+            <div class="loading-message" id="loadingMessage">Press the green button to get a random Pokémon!</div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

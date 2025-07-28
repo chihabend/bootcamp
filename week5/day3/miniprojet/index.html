@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars Character Finder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url(bg.webp);
+            background-repeat: repeat;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .title {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 
+                0 0 5px #FFD700,
+                0 0 10px #FFD700,
+                0 0 15px #FFD700,
+                3px 3px 0px rgba(0,0,0,0.8);
+            margin-bottom: 2rem;
+            letter-spacing: 8px;
+        }
+
+        .character-card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 3px solid #FFD700;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem;
+            width: 500px;
+            text-align: center;
+            box-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.5),
+                inset 0 0 20px rgba(255, 215, 0, 0.1);
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .character-name {
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .character-info {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #fff;
+        }
+
+        .character-info strong {
+            color: #FFD700;
+        }
+
+        .find-button {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border: none;
+            color: #000;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .find-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .find-button:active {
+            transform: translateY(0);
+        }
+
+        .loading {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            display: none;
+            color: #ff6b6b;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .show {
+            display: block !important;
+        }
+
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+            
+            .character-card {
+                width: 90%;
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .character-name {
+                font-size: 2rem;
+            }
+            
+            .character-info {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="title">STAR WARS</div>
+    
+    <div class="character-card" id="characterCard">
+        <div id="characterInfo" class="hidden">
+            <div class="character-name" id="characterName"></div>
+            <div class="character-info">
+                <div><strong>Height:</strong> <span id="characterHeight"></span></div>
+                <div><strong>Gender:</strong> <span id="characterGender"></span></div>
+                <div><strong>Birth Year:</strong> <span id="characterBirthYear"></span></div>
+                <div><strong>Home World:</strong> <span id="characterHomeworld"></span></div>
+            </div>
+        </div>
+        
+        <div class="loading" id="loadingMessage">
+            <i class="fas fa-spinner"></i>
+            Loading...
+        </div>
+        
+        <div class="error-message" id="errorMessage">
+            Oh No! That person isn't available.
+        </div>
+    </div>
+    
+    <button class="find-button" id="findButton">Find Someone</button>
+    
+    <script src="script.js"></script>
+</body>
+</html>
