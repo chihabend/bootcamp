@@ -1,0 +1,1 @@
+Ceci est un paragraphe de test pour vérifier le bon fonctionnement du fichier. Il contient quelques phrases pour simuler un vrai contenu et permettre de tester l'affichage ou le traitement du texte dans l'application.

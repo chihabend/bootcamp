@@ -1,0 +1,11 @@
+import chalk from 'chalk';
+console.log(chalk.blue('yah hadche nade'));
+console.log(chalk.red('hihihiho'));
+console.log(chalk.green('yah hadche nade'));
+console.log(chalk.yellow('yah hadche nade'));
+console.log(chalk.magenta('yah hadche nade'));
+console.log(chalk.cyan('yah hadche nade'));
+console.log(chalk.white('yah hadche nade'));
+console.log(chalk.black('yah hadche nade'));
+console.log(chalk.gray('yah hadche nade'));
+console.log(chalk.bgBlue('yah hadche nade'));
