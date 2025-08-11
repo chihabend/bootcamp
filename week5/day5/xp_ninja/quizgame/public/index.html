@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Quiz Game</h1>
+      <div class="status">
+        <span id="question-counter">Question 1/1</span>
+        <span id="timer" aria-live="polite"> 15s</span>
+        <span id="score">Score: 0</span>
+      </div>
+    </header>
+
+    <main>
+      <section id="quiz" class="card" aria-live="polite">
+        <h2 id="question">Chargement...</h2>
+        <form id="choices" class="choices"></form>
+        <div class="actions">
+          <button id="submit" class="btn primary">Valider</button>
+          <button id="next" class="btn" hidden>Suivant</button>
+        </div>
+        <p id="feedback" class="feedback" aria-live="polite"></p>
+      </section>
+
+      <section id="result" class="card" hidden>
+        <h2>R�sultat</h2>
+        <p id="final-score"></p>
+        <button id="restart" class="btn primary">Recommencer</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>

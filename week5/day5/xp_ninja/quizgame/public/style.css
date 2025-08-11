@@ -1,0 +1,43 @@
+:root {
+  --bg: #0f172a;
+  --panel: #111827;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --primary: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --border: #1f2937;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu;
+  color: var(--text);
+  background: radial-gradient(1000px 600px at 10% -20%, #1f2937, transparent),
+              radial-gradient(1000px 600px at 90% 120%, #1f2937, transparent),
+              var(--bg);
+  min-height: 100vh;
+}
+.app { max-width: 760px; margin: 0 auto; padding: 24px; }
+header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+h1 { font-size: 28px; margin: 0; letter-spacing: 0.5px; }
+.status { display: flex; gap: 12px; color: var(--muted); }
+#timer { color: var(--warning); font-weight: 600; }
+.card { background: rgba(17, 24, 39, 0.7); border: 1px solid var(--border); border-radius: 12px; padding: 20px; backdrop-filter: blur(6px); }
+#question { margin-top: 0; font-weight: 600; font-size: 22px; }
+.choices { display: grid; gap: 10px; margin: 16px 0; }
+.choice {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px;
+  background: #0b1220; cursor: pointer; transition: border 0.2s ease, background 0.2s ease;
+}
+.choice:hover { border-color: #334155; background: #0f172a; }
+.choice input { accent-color: var(--primary); }
+.actions { display: flex; gap: 10px; }
+.btn { border: 1px solid var(--border); background: #0b1220; color: var(--text); padding: 10px 14px; border-radius: 10px; cursor: pointer; }
+.btn.primary { background: linear-gradient(135deg, #16a34a, #22c55e); border: none; font-weight: 600; }
+.btn[disabled] { opacity: 0.6; cursor: not-allowed; }
+.feedback { min-height: 22px; font-weight: 600; }
+.feedback.ok { color: var(--primary); }
+.feedback.ko { color: var(--danger); }
+.hidden { display: none !important; }
