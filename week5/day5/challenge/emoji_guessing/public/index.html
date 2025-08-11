@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Guessing Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .emoji-display {
+            font-size: 8rem;
+            margin: 30px 0;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .option-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .option-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .option-btn:active {
+            transform: translateY(0);
+        }
+
+        .option-btn.correct {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            animation: correctPulse 0.6s ease;
+        }
+
+        .option-btn.incorrect {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+            animation: incorrectShake 0.6s ease;
+        }
+
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes incorrectShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .player-input {
+            margin: 20px 0;
+        }
+
+        .player-input input {
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 1rem;
+            width: 250px;
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+
+        .player-input input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .next-btn {
+            background: linear-gradient(45deg, #FF6B6B, #ee5a52);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 20px 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .feedback {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .feedback.correct {
+            background: rgba(76, 175, 80, 0.2);
+            color: #2e7d32;
+            border: 2px solid #4CAF50;
+        }
+
+        .feedback.incorrect {
+            background: rgba(244, 67, 54, 0.2);
+            color: #c62828;
+            border: 2px solid #f44336;
+        }
+
+        .score-display {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .leaderboard {
+            background: rgba(118, 75, 162, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid rgba(118, 75, 162, 0.3);
+        }
+
+        .leaderboard h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(118, 75, 162, 0.2);
+        }
+
+        .leaderboard-item:last-child {
+            border-bottom: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .emoji-display {
+                font-size: 6rem;
+            }
+            
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .player-input input {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Emoji Guessing Game</h1>
+        
+        <div class="player-input">
+            <input type="text" id="playerName" placeholder="Enter your name to start playing!" maxlength="20">
+        </div>
+
+        <div class="emoji-display" id="emojiDisplay">🎯</div>
+        
+        <div class="options-container" id="optionsContainer">
+            <button class="option-btn" onclick="selectOption(this)">Loading...</button>
+            <button class="option-btn" onclick="selectOption(this)">Loading...</button>
+            <button class="option-btn" onclick="selectOption(this)">Loading...</button>
+            <button class="option-btn" onclick="selectOption(this)">Loading...</button>
+        </div>
+
+        <div class="feedback hidden" id="feedback"></div>
+        
+        <div class="score-display">
+            <h3>Your Score: <span id="playerScore">0</span></h3>
+        </div>
+
+        <div class="leaderboard">
+            <h3>🏆 Top Players</h3>
+            <div id="leaderboardList">
+                <div class="leaderboard-item">
+                    <span>Loading...</span>
+                    <span>0</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="next-btn hidden" id="nextBtn" onclick="nextRound()">Next Round</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
