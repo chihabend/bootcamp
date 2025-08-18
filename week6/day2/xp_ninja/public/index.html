@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 Quiz Game 🧠</h1>
+        
+        <div id="quiz-container">
+            <div id="start-screen">
+                <h2>Welcome to the Quiz Game!</h2>
+                <p>Test your knowledge with our trivia questions.</p>
+                <button id="start-btn" class="btn">Start Quiz</button>
+            </div>
+            
+            <div id="question-screen" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                
+                <div class="question-info">
+                    <span id="question-number">Question 1</span>
+                    <span id="score">Score: 0</span>
+                </div>
+                
+                <div id="question-text" class="question"></div>
+                
+                <div id="options-container" class="options"></div>
+                
+                <button id="next-btn" class="btn" style="display: none;">Next Question</button>
+            </div>
+            
+            <div id="result-screen" style="display: none;">
+                <div id="result-message"></div>
+                <div id="final-score"></div>
+                <button id="restart-btn" class="btn">Play Again</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

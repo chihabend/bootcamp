@@ -1,0 +1,19 @@
+{
+  "name": "todo-list-api",
+  "version": "1.0.0",
+  "description": "Simple to-do list API using Express.js and express.Router",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": ["express", "api", "todo", "crud", "nodejs"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

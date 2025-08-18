@@ -1,0 +1,19 @@
+{
+  "name": "trivia-quiz-game",
+  "version": "1.0.0",
+  "description": "Daily Challenge: Trivia Quiz Game with Express.js and express.Router",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": ["express", "quiz", "trivia", "game", "nodejs"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
