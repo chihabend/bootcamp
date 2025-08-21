@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Strategy Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header class="game-header">
+            <h1><i class="fas fa-chess-board"></i> Strategy Game</h1>
+            <div class="game-info" id="game-info" style="display: none;">
+                <span id="current-turn">Your turn</span>
+                <span id="game-status">Waiting for opponent...</span>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <div id="login-section" class="game-section">
+                <div class="login-card">
+                    <h2>Join the Battle</h2>
+                    <div class="input-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" placeholder="Enter your username" required>
+                    </div>
+                    <button id="create-player-btn" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Create Player
+                    </button>
+                    
+                    <div id="player-created" style="display: none;">
+                        <p>Player created! Your ID: <span id="player-id"></span></p>
+                        <div class="game-actions">
+                            <button id="create-game-btn" class="btn btn-success">
+                                <i class="fas fa-plus"></i> Create New Game
+                            </button>
+                            <button id="join-game-btn" class="btn btn-info">
+                                <i class="fas fa-sign-in-alt"></i> Join Existing Game
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="game-section" class="game-section" style="display: none;">
+                <div class="game-board-container">
+                    <div class="game-board" id="game-board">
+                        <!-- Game grid will be generated here -->
+                    </div>
+                    
+                    <div class="game-controls">
+                        <div class="control-buttons">
+                            <button id="move-up" class="btn btn-control" data-direction="up">
+                                <i class="fas fa-chevron-up"></i>
+                            </button>
+                            <div class="horizontal-controls">
+                                <button id="move-left" class="btn btn-control" data-direction="left">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button id="move-right" class="btn btn-control" data-direction="right">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <button id="move-down" class="btn btn-control" data-direction="down">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="game-status">
+                            <p id="status-message">Make your move!</p>
+                            <p id="move-count">Moves: 0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-sidebar">
+                    <div class="player-info">
+                        <h3>Game Info</h3>
+                        <div id="player1-info">
+                            <p><strong>Player 1:</strong> <span id="player1-name">-</span></p>
+                            <p><strong>Position:</strong> <span id="player1-pos">(0, 0)</span></p>
+                        </div>
+                        <div id="player2-info">
+                            <p><strong>Player 2:</strong> <span id="player2-name">-</span></p>
+                            <p><strong>Position:</strong> <span id="player2-pos">(9, 9)</span></p>
+                        </div>
+                    </div>
+
+                    <div class="game-actions">
+                        <button id="new-game-btn" class="btn btn-warning">
+                            <i class="fas fa-redo"></i> New Game
+                        </button>
+                        <button id="leave-game-btn" class="btn btn-danger">
+                            <i class="fas fa-sign-out-alt"></i> Leave Game
+                        </button>
+                    </div>
+
+                    <div class="move-history">
+                        <h3>Move History</h3>
+                        <div id="moves-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="games-list-section" class="game-section" style="display: none;">
+                <div class="games-list-card">
+                    <h2>Available Games</h2>
+                    <div id="games-list"></div>
+                    <button id="back-to-menu-btn" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Menu
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <div id="notification" class="notification hidden">
+            <i class="fas fa-info-circle"></i>
+            <span id="notification-text"></span>
+        </div>
+
+        <div id="game-over-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2 id="game-over-title">Game Over!</h2>
+                <p id="game-over-message"></p>
+                <div class="modal-actions">
+                    <button id="play-again-btn" class="btn btn-success">Play Again</button>
+                    <button id="back-to-menu-modal-btn" class="btn btn-secondary">Back to Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

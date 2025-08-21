@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Chat App</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="login-container" class="container">
+        <div class="login-card">
+            <div class="logo">
+                <i class="fas fa-comments"></i>
+                <h1>Chat App</h1>
+            </div>
+            <form id="login-form">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-door-open"></i>
+                    <input type="text" id="room" placeholder="Enter room name" required>
+                </div>
+                <button type="submit" class="btn-join">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Join Chat
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="chat-container" class="container hidden">
+        <div class="chat-header">
+            <div class="room-info">
+                <h2><i class="fas fa-hashtag"></i> <span id="room-name">General</span></h2>
+                <p id="user-count">0 users online</p>
+            </div>
+            <button id="leave-btn" class="btn-leave">
+                <i class="fas fa-sign-out-alt"></i>
+                Leave Room
+            </button>
+        </div>
+
+        <div class="chat-main">
+            <div class="chat-messages" id="messages">
+                <div class="welcome-message">
+                    <i class="fas fa-hand-wave"></i>
+                    <p>Welcome to the chat! Start typing to begin...</p>
+                </div>
+            </div>
+
+            <div class="chat-sidebar">
+                <div class="users-section">
+                    <h3><i class="fas fa-users"></i> Active Users</h3>
+                    <ul id="users-list"></ul>
+                </div>
+                
+                <div class="typing-indicator" id="typing-indicator" style="display: none;">
+                    <i class="fas fa-pencil-alt"></i>
+                    <span id="typing-text">Someone is typing...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <div class="input-wrapper">
+                <input type="text" id="message-input" placeholder="Type your message..." maxlength="500">
+                <button id="send-btn" class="btn-send">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <div class="message-info">
+                <span id="char-count">0/500</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification hidden">
+        <i class="fas fa-bell"></i>
+        <span id="notification-text"></span>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
